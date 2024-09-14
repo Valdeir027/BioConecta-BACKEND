@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Perfil,Disciplinas, Professor
+from .models import Perfil,Disciplina, Professor
 
 # Register your modelfs here.
 admin.site.register(Perfil)
-admin.site.register(Disciplinas)
+admin.site.register(Disciplina)
 admin.site.register(Professor)

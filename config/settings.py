@@ -40,7 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+#apps local
+INSTALLED_APPS += [
     'contrib'
+]
+
+#pacotes de terceiros
+INSTALLED_APPS += [
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -111,9 +120,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-BR'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Manaus'
 
 USE_I18N = True
 
