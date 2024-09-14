@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
-from decouple import config
+from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default= True, cast=bool)
 
-ALLOWED_HOSTS = ['172.28.177.56']
+ALLOWED_HOSTS = ['172.28.177.56',"quetzal-touched-jolly.ngrok-free.app"]
 
 
 # Application definition
@@ -129,3 +129,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE')
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://quetzal-touched-jolly.ngrok-free.app',
+    # Adicione outros domínios conforme necessário
+]
