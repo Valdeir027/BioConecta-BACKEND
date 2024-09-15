@@ -1,7 +1,13 @@
+#python
+
+#django
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
+from django.contrib.auth.models import User
 
+#local
+from contrib.models import Perfil, Professor
 # Create your views here.
 def custom_login(request):
     error = None
@@ -13,8 +19,12 @@ def custom_login(request):
             login( request=request, user=user)
             return redirect('/admin/')
         else:
-            error = "Usario ou senha invalidos"  
+            error = True  
     return render(request=request ,template_name="login.html", context={
         'error':error
     })
 
+def create_user(request):
+    error = None
+
+    return render(request=request, template_name="create_user.html")

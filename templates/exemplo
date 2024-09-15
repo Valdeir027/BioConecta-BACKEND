@@ -1,0 +1,79 @@
+{% extends 'default.html' %}
+{% load static %}
+
+{%block css%}
+<style>
+    body{
+        background-color: #37ab98;
+    }
+</style>
+{%endblock%}
+{%block content%}
+    <div class="container bg-primary-custom vw-100 d-flex justify-content-center  align-items-center vh-100">
+        {%if error%}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {%endif%}
+        <div class="w-50  h-75 d-flex flex-column light bg-light justify-content-center align-items-center">
+            <img class="mb-0" src="{%static 'img/icon.png'%}" alt="" width="102" height="102">
+            <img class="mb-0  fit-cover" src="{%static 'img/bioconectatitle.png'%}" alt="" width="200" height="57">
+            <div class="login w-100">
+                <form class="d-flex flex-column align-items-center w-100" method="post">
+                    {% csrf_token %}
+                    <div class="mb-1 w-75 ">
+                        <div class="form-floating">
+                            <input type="text" class="form-control b-green" name="username"id="floatingInput" placeholder="name@example.com">
+                            <label for="floatingInput">cpf</label>
+                        </div>
+                    </div>
+                    <div class="mb-2 mt-3 w-75">
+                        <div class="form-floating">
+                            <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
+                            <label for="floatingPassword">senha</label>
+                            <button type="button" class="position-absolute btn  btn-icon btn-sm btn-outline-light end-0 top-0 mt-2 me-2" id="togglePassword" style="z-index: 1; outline: none; box-shadow: none;"><i class="bi bi-eye-fill primary-color-custom" id="eyeIcon"></i>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <a class="w-100  btn btn-lg me-2 btn-secondary-custom" href="/cadastrar/">Cadastre-se</a>
+                        <button class="w-10   btn btn-lg btn-primary-custom" type="submit">Entrar</button>
+
+                    </div>
+                </form>
+            </div>
+            <p class="mt-5 mb-3 text-muted"> 24.09.0</p>
+        </div>
+        <div class="w-50 h-100 d-flex align-items-center" style="background-color: #37ab98;">
+            <div class="w-100  d-flex b-green  ">
+                <img src="{%static 'img/Mobile login-bro.svg'%}" alt="">
+            </div>
+        </div>
+        
+    </div>
+{%endblock%}
+
+{%block js %}
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const passwordField = document.querySelector('#floatingPassword');
+    const eyeIcon = document.querySelector('#eyeIcon');
+
+    togglePassword.addEventListener('click', function () {
+        const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordField.setAttribute('type', type);
+        
+        if (type === 'password') {
+            eyeIcon.classList.remove('bi-eye-slash-fill');
+            eyeIcon.classList.remove('secondary-color-custom');
+            eyeIcon.classList.add('bi-eye-fill');
+            eyeIcon.classList.add('primary-color-custom');
+        } else {
+            eyeIcon.classList.remove('bi-eye-fill');
+            eyeIcon.classList.remove('primary-color-custom');
+            eyeIcon.classList.add('bi-eye-slash-fill');
+            eyeIcon.classList.add('secondary-color-custom')
+        }
+    });
+</script>
+{%endblock%}

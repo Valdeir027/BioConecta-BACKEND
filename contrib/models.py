@@ -9,7 +9,7 @@ class Perfil(models.Model):
     nome = models.CharField(max_length=250, blank=None,null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     idade = models.IntegerField()
-
+    cpf = models.IntegerField()
 
     def desativar(self):
         self.user.is_active = False

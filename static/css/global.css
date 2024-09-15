@@ -22,6 +22,31 @@ input:active{
     background: #37ab98;
 }
 
+.bg-primary-custom {
+    background: #37ab98 !important;
+}
 .btn-primary-custom:hover {
     background: #e1ce8a
+}
+
+.btn-secondary-custom {
+    color:white;
+    background: #a6c88c;
+}
+
+.btn-secondary-custom:hover {
+    color:white;
+    background: #e1ce8a;
+}
+
+.btn-no-boder:active {
+    outline: none;
+}
+
+
+.primary-color-custom{
+    color:#37ab98;    
+}
+.secondary-color-custom{
+    color:#e1ce8a;    
 }
