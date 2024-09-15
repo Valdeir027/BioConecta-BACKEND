@@ -1,0 +1,27 @@
+.fit-cover {
+    object-fit: cover;
+}
+
+.fit-fill {
+    object-fit: fill;
+}
+
+input:focus, 
+input:focus {
+    border-color: #37ab98 !important;  /* Muda a cor da borda no foco */
+    box-shadow: 0 0 5px 2px #37ab98  !important;  /* Personaliza a sombra ao redor do campo */
+    outline: none; /* Remove o contorno padrão */
+}
+
+input:active{
+    background: #37ab98;
+}
+
+.btn-primary-custom {
+    color:white;
+    background: #37ab98;
+}
+
+.btn-primary-custom:hover {
+    background: #e1ce8a
+}

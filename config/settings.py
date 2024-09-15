@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default= True, cast=bool)
 
-ALLOWED_HOSTS = ['172.28.177.56',"quetzal-touched-jolly.ngrok-free.app"]
+ALLOWED_HOSTS = ['172.28.177.56',"quetzal-touched-jolly.ngrok-free.app", '127.0.0.1']
 
 
 # Application definition
@@ -44,7 +44,8 @@ INSTALLED_APPS = [
 
 #apps local
 INSTALLED_APPS += [
-    'contrib'
+    'contrib',
+    'bio_auth'
 ]
 
 #pacotes de terceiros
@@ -67,7 +68,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,6 +135,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -146,3 +154,8 @@ CSRF_TRUSTED_ORIGINS = [
     'https://quetzal-touched-jolly.ngrok-free.app',
     # Adicione outros domínios conforme necessário
 ]
+
+
+#auth
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login/'
