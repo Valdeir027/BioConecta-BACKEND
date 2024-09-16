@@ -152,7 +152,7 @@ CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE')
 
 CSRF_TRUSTED_ORIGINS = [
     'https://quetzal-touched-jolly.ngrok-free.app',
-    # Adicione outros domínios conforme necessário
+    'http://ec2-18-228-44-147.sa-east-1.compute.amazonaws.com/'
 ]
 
 
