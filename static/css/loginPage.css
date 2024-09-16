@@ -1,4 +1,5 @@
 .image-container {
+    display:none;
     position: absolute;
     top: 0;
     right: 0;
@@ -23,4 +24,13 @@
 
 .image-container img:not(.hidden) {
     opacity: 1; /* Visível quando não estiver oculto */
+}
+
+
+/* Para telas com largura máxima de 768px (tablets) */
+@media (max-width: 300px) {
+    .image-container {
+        width: 0;
+
+    }
 }

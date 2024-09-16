@@ -1,0 +1,24 @@
+{% extends 'default.html' %}
+{%load static%}
+{%block css%}
+<link rel="stylesheet" href="{% static 'css/desenvolvimento.css'%}">
+{%endblock%}
+{%block content%}
+    <div class="vh-100 d-flex flex-column align-items-center justify-content-center">
+            <div class="img">
+                <img src="{%static 'img/Innovation-bro.svg'%}" width="325">
+            </div>
+            <div>
+                <h2 class="text-center">
+                    Desculpe {{nome_usuario}}
+                </h2>
+                <p class="text-center">
+                    Ainda estamos trabalhando nesta página. <br> Aguarde as novas atualizações
+                </p>
+            </div>
+            <div>
+                <a class=" logoutBtn w-10 btn btn-primary-custom"   href="/logout/" type="submit">Voltar</a>
+            </div>
+
+    </div>
+{%endblock%}

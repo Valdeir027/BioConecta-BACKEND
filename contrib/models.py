@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import re
 
 # Create your models here.
 class Perfil(models.Model):
@@ -8,8 +9,15 @@ class Perfil(models.Model):
 
     nome = models.CharField(max_length=250, blank=None,null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    idade = models.IntegerField()
-    cpf = models.IntegerField()
+    cpf = models.CharField(max_length=11)
+
+    def get_first_name(self):
+        return self.nome.split(' ')[0]
+
+    def remove_cpf_formatting(cpf):
+        # Remove qualquer caractere que não seja dígito usando expressões regulares
+        cpf_clean = re.sub(r'\D', '', cpf) 
+        return cpf_clean
 
     def desativar(self):
         self.user.is_active = False

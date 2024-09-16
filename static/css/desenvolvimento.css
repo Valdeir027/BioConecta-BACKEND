@@ -1,0 +1,23 @@
+body {
+    background-color: #c3e6e0;
+}
+
+
+.img img {
+    display: block;
+    width: 325px; /* Defina a largura conforme necessário */
+    animation: float 3s ease-in-out infinite;
+}
+
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); /* Mova para cima */
+    }
+    100% {
+        transform: translateY(0); /* Retorne ao estado inicial */
+    }
+}

@@ -12,9 +12,25 @@ document.getElementById('floatingCpf').addEventListener('input', function (e) {
     e.target.value = value; // Set the formatted value back to the input
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-        var toastEl = document.getElementById('liveToast');
 
+document.getElementById('inputCpfcadastro').addEventListener('input', function (e) {
+    let value = e.target.value.replace(/\D/g, ''); // Remove all non-digit characters
+    if (value.length > 11) {
+        value = value.slice(0, 11); // Ensure it's no more than 11 digits
+    }
+    
+    // Format: 000.000.000-00
+    value = value.replace(/(\d{3})(\d)/, '$1.$2'); // Add the first dot
+    value = value.replace(/(\d{3})(\d)/, '$1.$2'); // Add the second dot
+    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2'); // Add the dash
+
+    e.target.value = value; // Set the formatted value back to the input
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    var toastEl = document.getElementById('liveToast');
+    
         // Verifica se o elemento do toast existe, para não tentar exibir o toast quando não há erro
         if (toastEl) {
             var toast = new bootstrap.Toast(toastEl);
