@@ -13,13 +13,30 @@ document.getElementById('floatingCpf').addEventListener('input', function (e) {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-var toastEl = document.getElementById('liveToast');
+        var toastEl = document.getElementById('liveToast');
 
-// Verifica se o elemento do toast existe, para não tentar exibir o toast quando não há erro
-if (toastEl) {
-    var toast = new bootstrap.Toast(toastEl);
-    toast.show(); // Exibe o toast apenas se ele estiver presente
-}
+        // Verifica se o elemento do toast existe, para não tentar exibir o toast quando não há erro
+        if (toastEl) {
+            var toast = new bootstrap.Toast(toastEl);
+            toast.show(); // Exibe o toast apenas se ele estiver presente
+        }
+        var cadastroBtn = document.querySelector('#BtnCadastro')
+        var loginBtn = document.querySelector("#BtnLogin")
+        var imgContainer = document.querySelector('.image-container')
+        var loginImg = document.querySelector("#loginImg")
+        var cadastroImg = document.querySelector("#cadastroImg")
+        cadastroBtn.addEventListener('click', (e) =>{
+            e.preventDefault()
+            loginImg.classList.add('hidden')
+            cadastroImg.classList.remove('hidden')
+            imgContainer.classList.add('image-container-active')
+        })
+        loginBtn.addEventListener('click', (e) =>{
+            e.preventDefault()
+            cadastroImg.classList.add('hidden')
+            loginImg.classList.remove('hidden')
+            imgContainer.classList.remove('image-container-active')
+        })
 });
 
 
