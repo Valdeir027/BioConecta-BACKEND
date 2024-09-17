@@ -8,7 +8,7 @@ COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-COPY . .
+COPY ../. .
 # Coleta arquivos estáticos para produção
 RUN python manage.py collectstatic
 # Copia o resto do código para o diretório de trabalho
