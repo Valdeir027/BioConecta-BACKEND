@@ -41,17 +41,37 @@ document.addEventListener('DOMContentLoaded', function () {
         var imgContainer = document.querySelector('.image-container')
         var loginImg = document.querySelector("#loginImg")
         var cadastroImg = document.querySelector("#cadastroImg")
+        var loginform = document.querySelector('.loginForm')
+        var cadasroform = document.querySelector('.cadastroForm')
         cadastroBtn.addEventListener('click', (e) =>{
             e.preventDefault()
-            loginImg.classList.add('hidden')
-            cadastroImg.classList.remove('hidden')
-            imgContainer.classList.add('image-container-active')
+            const larguraTela = window.innerWidth;
+
+            if (larguraTela <= 480) {
+                console.log(loginform)
+                
+                loginform.classList.add('mobile-hidden-form')
+                cadasroform.classList.remove('mobile-hidden-form')
+              
+            }else{
+                loginImg.classList.add('hidden')
+                cadastroImg.classList.remove('hidden')
+                imgContainer.classList.add('image-container-active')
+            }
         })
         loginBtn.addEventListener('click', (e) =>{
             e.preventDefault()
-            cadastroImg.classList.add('hidden')
-            loginImg.classList.remove('hidden')
-            imgContainer.classList.remove('image-container-active')
+            const larguraTela = window.innerWidth;
+            if (larguraTela <= 480) {
+                cadasroform.classList.add('mobile-hidden-form')
+                loginform.classList.remove('mobile-hidden-form')
+              
+            }else{
+                cadastroImg.classList.add('hidden')
+                loginImg.classList.remove('hidden')
+                imgContainer.classList.remove('image-container-active')
+            }
+            
         })
 });
 
@@ -76,3 +96,4 @@ togglePassword.addEventListener('click', function () {
         eyeIcon.classList.add('secondary-color-custom')
     }
 });
+

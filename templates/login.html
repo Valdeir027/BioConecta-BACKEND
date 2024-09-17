@@ -3,6 +3,31 @@
 
 {%block css%}
 <link rel="stylesheet" href="{%static 'css/loginPage.css'%}">
+<style>
+    /* Estilos para telas bem pequenas, como celulares */
+    @media (max-width: 480px) {
+        .image-container {
+            display:none!important;
+        }
+        .content{
+            flex-direction: column!important;
+        }
+        .cadastroForm{
+            
+            width: 100%!important;
+            justify-content: center!important;
+            align-items: center!important;
+        }
+        .mobile-hidden-form {
+            display:none!important;
+        }
+        .loginForm{
+            width: 100%!important;
+            justify-content: center!important;
+            align-items: center!important;
+        }
+    }
+</style>
 {%endblock%}
 {%block content%}
 {% if error %}
@@ -18,7 +43,7 @@
     </div>
 {% endif %}
 <div class="content vh-100 wh-100 d-flex">
-    <div class="form-container w-50 h-100 d-flex flex-column justify-content-center align-items-center">
+    <div class="form-container loginForm w-50 h-100 d-flex flex-column justify-content-center align-items-center">
         
         <img class="mb-0" src="{%static 'img/icon.png'%}" alt="" width="102" height="102">
         <img class="mb-0  fit-cover" src="{%static 'img/bioconectatitle.png'%}" alt="" width="200" height="57">
@@ -44,8 +69,8 @@
             </div>
         </form>
     </div>
-    <div class="w-50 h-100">
-        <div class="form-container  w-100 h-100 d-flex flex-column justify-content-center align-items-center" >
+    <div class="w-50 h-100 cadastroForm mobile-hidden-form">
+        <div class="form-container   h-100 d-flex flex-column justify-content-center align-items-center" >
             <h2 class="primary-color-custom mb-4">Cadastre-se</h2>
             <form class="d-flex flex-column align-items-center w-100" method="post" id="cadastroForm">
                 {% csrf_token %}

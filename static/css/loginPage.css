@@ -27,10 +27,5 @@
 }
 
 
-/* Para telas com largura máxima de 768px (tablets) */
-@media (max-width: 300px) {
-    .image-container {
-        width: 0;
 
-    }
-}
+  
