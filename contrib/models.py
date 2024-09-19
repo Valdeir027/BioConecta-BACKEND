@@ -11,8 +11,12 @@ class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     cpf = models.CharField(max_length=11)
 
-    def get_first_name(self):
+    def first_name(self):
         return self.nome.split(' ')[0]
+    
+    def last_name(self):
+        self.nome.split(' ')[1:]
+        return ' '.join(self.nome.split(' ')[1:])
 
     def remove_cpf_formatting(cpf):
         # Remove qualquer caractere que não seja dígito usando expressões regulares

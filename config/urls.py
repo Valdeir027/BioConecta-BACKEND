@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
 from bio_auth.views import custom_login, sair
@@ -12,4 +12,10 @@ urlpatterns = [
     path('login/', custom_login, name='custom_login'),
     path('logout/', sair, name='logout'),
     path('', index, name='index')
+]
+
+
+#api
+urlpatterns +=[
+    path('api/', include('api.urls'))
 ]

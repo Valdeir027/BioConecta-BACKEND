@@ -17,5 +17,5 @@ def index(request):
 
     return render(request, template_name="desenvolvendo.html", context={
         'user': request.user,
-        'nome_usuario': perfil.get_first_name() if perfil else 'Nome não disponível'
+        'nome_usuario': perfil.first_name() if perfil else 'Nome não disponível'
     })

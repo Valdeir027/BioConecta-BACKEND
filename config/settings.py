@@ -45,13 +45,23 @@ INSTALLED_APPS = [
 #apps local
 INSTALLED_APPS += [
     'contrib',
-    'bio_auth'
+    'bio_auth',
+    'api'
 ]
 
 #pacotes de terceiros
 INSTALLED_APPS += [
+    'rest_framework',
+    'rest_framework.authtoken',
     'django_extensions',
+    'drf_yasg'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # Adiciona o TokenAuthentication
+    ],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
