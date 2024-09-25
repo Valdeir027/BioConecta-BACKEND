@@ -32,6 +32,16 @@ class Perfil(models.Model):
         self.user.is_active = True
         self.user.save()
         return self
+    
+
+    def save(self, *args, **kwargs):
+        # Se não houver um usuário associado, cria um novo usuário automaticamente
+        if not self.user_id:
+            self.user = User.objects.create(
+                first_name=self.first_name(),
+                last_name = self.last_name(),
+                username=self.cpf,
+                )
 
     def __str__(self) ->str:
         return self.nome

@@ -41,17 +41,15 @@ def custom_login(request):
                 user = User.objects.get(username=cpf)
             except:
                 user = None
+
             if user is None:
                 if senha1 == senha2:
-                    user = User.objects.create(username=cpf, email=email)
-                    perfil = Perfil.objects.create(nome=nome,user=user, cpf=cpf)
-                    user.first_name = perfil.first_name()
-                    user.last_name = perfil.last_name()
-                    user.set_password(senha1)
-                    user.save()
-                    login( request=request, user=user)
+                    perfil = Perfil.objects.create(nome=nome, cpf=cpf)
+                    perfil.user.set_password(senha1)
+                    perfil.user.email = email
+                    perfil.user.save()
                     
-                    
+                    login(user=perfil.user, request=request)
                     return redirect(index)
                 else:
                     error = True
