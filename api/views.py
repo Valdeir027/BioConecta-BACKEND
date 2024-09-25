@@ -36,7 +36,7 @@ class RegisterView(APIView):
         operation_description="Registro de usuario",
         request_body=openapi.Schema(
             type=openapi.TYPE_OBJECT,
-            required=['cpf','nome','email'],
+            required=['cpf','nome','email','senha'],
             properties={
                 'cpf': openapi.Schema(type=openapi.TYPE_STRING, description='CPF do usuario'),
                 'nome': openapi.Schema(type=openapi.TYPE_STRING, description='Nome completo do usuario'),
@@ -44,7 +44,7 @@ class RegisterView(APIView):
                 'senha':openapi.Schema(type=openapi.TYPE_STRING, description='Senha do usuario'),
             },
         ),
-        responses={200: 'Sucesso', 400: 'Erro nos parâmetros'}
+        responses={201: 'Sucesso', 409: 'Já cadastrado', 500:'Error'}
     )
 
     def post(self, request):
