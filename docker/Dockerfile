@@ -1,7 +1,7 @@
 # Use a imagem base do Python para Django
 FROM python:3.10
 # Define o diretório de trabalho dentro do container
-WORKDIR /app
+WORKDIR /code
 
 # Copia o arquivo requirements.txt e instala as dependências
 COPY requirements.txt .
