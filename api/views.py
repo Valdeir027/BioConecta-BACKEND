@@ -127,13 +127,56 @@ class BookView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
-class BookListView(APIView):
-    permission_classes = [IsAuthenticated]  # Apenas usuários autenticados podem acessar
-
+    @swagger_auto_schema(
+        manual_parameters=[
+            openapi.Parameter('livro_id', openapi.IN_QUERY, description="livro", type=openapi.TYPE_INTEGER),
+            
+        ],
+        responses={200: 'Sucesso', 400: 'Erro de validação'}
+    )
     def get(self, request):
-        books = Book.objects.all()  # Busca todos os livros no banco de dados
-        serializer = BookSerializer(books, many=True)  # Serializa os dados (many=True pois são vários livros)
-        return Response(serializer.data)  # Retorna os dados serializados
+        data = request.data
+        book = Book.objects.get(id=data['livro_id'])
+        serializer  = BookSerializer(book)
+
+        return Response(serializer.data)
+class BookListView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    @swagger_auto_schema(
+        manual_parameters=[
+            openapi.Parameter('titulo', openapi.IN_QUERY, description="Título do livro", type=openapi.TYPE_STRING),
+            openapi.Parameter('autor', openapi.IN_QUERY, description="Nome do autor", type=openapi.TYPE_STRING),
+            openapi.Parameter('estante_id', openapi.IN_QUERY, description="ID da estante", type=openapi.TYPE_INTEGER),
+        ],
+        responses={200: 'Sucesso', 400: 'Erro de validação'}
+    )
+    def get(self, request):
+        # Obtém os query params da requisição
+        titulo = request.query_params.get('titulo', None)
+        autor = request.query_params.get('autor', None)
+        estante_id = request.query_params.get('estante_id', None)
+
+        # Inicia a query buscando todos os livros
+        books = Book.objects.all()
+
+        # Filtra por título, se o query param 'titulo' estiver presente
+        if titulo:
+            books = books.filter(titulo__icontains=titulo)
+
+        # Filtra por autor, se o query param 'autor' estiver presente
+        if autor:
+            books = books.filter(autor__icontains=autor)
+
+        # Filtra por estante_id, se o query param 'estante_id' estiver presente
+        if estante_id:
+            books = books.filter(estante__id=estante_id)
+
+        # Serializa os dados
+        serializer = BookSerializer(books, many=True)
+
+        # Retorna a resposta com os dados filtrados
+        return Response(serializer.data)
 
 
 
