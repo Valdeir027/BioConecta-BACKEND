@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from contrib.models import Perfil
+from .models import Perfil
 
 # Create your views here.
 @login_required
@@ -15,6 +15,8 @@ def index(request):
         # Lidar com a situação onde o perfil não existe
         perfil = None
 
-    return render(request, template_name="desenvolvendo.html", context={
+    print(perfil)
 
+    return render(request, template_name="desenvolvendo.html", context={
+        'perfil':perfil
     })

@@ -36,7 +36,6 @@ def custom_login(request):
             email = request.POST.get('email')
             senha1 = request.POST.get('password')
             senha2 = request.POST.get('password2')
-            print(cpf)
             try:
                 user = User.objects.get(username=cpf)
             except:
@@ -48,8 +47,10 @@ def custom_login(request):
                     perfil.user.set_password(senha1)
                     perfil.user.email = email
                     perfil.user.save()
+                    perfil.save()
                     
                     login(user=perfil.user, request=request)
+                    print(perfil.foto)
                     return redirect(index)
                 else:
                     error = True

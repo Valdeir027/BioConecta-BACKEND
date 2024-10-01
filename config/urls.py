@@ -2,6 +2,8 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from django.conf.urls.static import static
+from django.conf import settings
 
 from bio_auth.views import custom_login, sair
 from contrib.views import index
@@ -19,3 +21,8 @@ urlpatterns = [
 urlpatterns +=[
     path('api/', include('api.urls'))
 ]
+
+
+#media
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)    

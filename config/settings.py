@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [
     'contrib',
     'bio_auth',
+    'estante',
     'api'
 ]
 
@@ -166,7 +167,34 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 
+#Media
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 #auth
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
+
+
+#Swagger
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'TokenAuth': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+            'description': "Token-based authentication with required prefix 'Token'"
+        }
+    },
+    'USE_SESSION_AUTH': False,
+    'OPERATIONS_SORTER': 'alpha',
+}
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',  # Autenticação por Token
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',  # Permissão padrão: autenticado
+    ),
+}

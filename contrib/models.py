@@ -11,6 +11,8 @@ class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     cpf = models.CharField(max_length=11)
 
+    foto = models.ImageField( upload_to='perfil_pics', default='defaultUserPerfil.png')
+
     def first_name(self):
         return self.nome.split(' ')[0]
     
@@ -43,6 +45,8 @@ class Perfil(models.Model):
                 username=self.cpf,
                 )
 
+        # Chama o método original de salvamento
+        super(Perfil, self).save(*args, **kwargs)
     def __str__(self) ->str:
         return self.nome
 
