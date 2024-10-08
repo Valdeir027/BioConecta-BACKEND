@@ -47,7 +47,9 @@ class Perfil(models.Model):
 
         # Chama o método original de salvamento
         super(Perfil, self).save(*args, **kwargs)
-    def __str__(self) ->str:
+
+    
+    def __str__(self) -> str:
         return self.nome
 
 class Disciplina(models.Model):

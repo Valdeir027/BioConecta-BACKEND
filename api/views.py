@@ -7,7 +7,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,AllowAny
 
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
@@ -27,7 +27,11 @@ class UserDetailView(APIView):
         user = request.user  # Obtém o usuário autenticado através do token
         serializer = UserSerializer(user)  # Serializa os dados do usuário
         return Response(serializer.data)  # Retorna os dados serializados
+
+
 class RegisterView(APIView):
+    permission_classes = [AllowAny]
+
     @swagger_auto_schema(
         operation_description="Registro de usuario",
         request_body=openapi.Schema(
