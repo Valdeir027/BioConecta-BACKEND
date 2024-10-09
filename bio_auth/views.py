@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 #local
 from contrib.models import Perfil
-from contrib.views import index
+from estante.views import index
 from contrib.models import Perfil
 
 

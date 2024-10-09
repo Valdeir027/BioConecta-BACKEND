@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from bio_auth.views import custom_login, sair
-from contrib.views import index
+from estante.views import index
 
 
 urlpatterns = [
