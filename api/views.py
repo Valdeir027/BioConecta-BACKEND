@@ -21,12 +21,40 @@ from estante.models import Book, Estante
 
 
 class UserDetailView(APIView):
-    permission_classes = [IsAuthenticated]  # Garante que apenas usuários autenticados podem acessar
-    
+    permission_classes = [AllowAny]  # Garante que apenas usuários autenticados podem acessar
+
     def get(self, request):
         user = request.user  # Obtém o usuário autenticado através do token
         serializer = UserSerializer(user)  # Serializa os dados do usuário
         return Response(serializer.data)  # Retorna os dados serializados
+
+    @swagger_auto_schema(
+        operation_description="LoginUser",
+        request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            required=['cpf','senha',],
+            properties={
+                'cpf': openapi.Schema(type=openapi.TYPE_STRING, description='CPF do usuario'),
+                'senha':openapi.Schema(type=openapi.TYPE_STRING, description='Senha do usuario'),
+            },
+        ),
+        responses={201: 'Sucesso', 409: 'Já cadastrado', 500:'Error'}
+    )
+    def post(self, request):
+        data = request.data
+        user= authenticate(request=request, username =data['cpf'],password=data["senha"])
+        perfil =  Perfil.objects.get(user=user)
+        token, _ = Token.objects.get_or_create(user=user)
+        return JsonResponse({
+            'user':{
+                'cpf':user.username,
+                'first_name':user.first_name,
+                'last_name':user.last_name,
+                'email':user.email,
+                'foto_url':perfil.foto.url,
+            },
+            'auth_token':token.key
+        })# Retorna os dados serializados
 
 
 class RegisterView(APIView):
