@@ -15,8 +15,8 @@ schema_view = get_schema_view(
         contact=openapi.Contact(email="saparavaldeir@gmail.com"),
         license=openapi.License(name="Licença MIT"),
     ),
-    public=True,
-    authentication_classes=[],  # Token Authentication configurado
+    public=False,
+    # authentication_classes=[],  # Token Authentication configuradox   
     permission_classes=(permissions.AllowAny,)
 )
 

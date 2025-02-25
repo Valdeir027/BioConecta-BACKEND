@@ -179,7 +179,11 @@ LOGOUT_REDIRECT_URL = '/login/'
 
 #Swagger
 SWAGGER_SETTINGS = {
+    
     'SECURITY_DEFINITIONS': {
+        'basic': {
+            'type': 'basic'
+            },
         'TokenAuth': {
             'type': 'apiKey',
             'name': 'Authorization',
@@ -187,12 +191,13 @@ SWAGGER_SETTINGS = {
             'description': "Token-based authentication with required prefix 'Token'"
         }
     },
-    'USE_SESSION_AUTH': False,
     'OPERATIONS_SORTER': 'alpha',
 }
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',  # Autenticação por Token
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',  # Permissão padrão: autenticado

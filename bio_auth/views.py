@@ -17,6 +17,7 @@ from contrib.models import Perfil
 def custom_login(request):
     error = None
     text_error = ''
+    next_url = request.GET.get('next', 'index')
     if request.method == 'POST':
         if request.POST.get('form') =='loginForm':
             username = Perfil.remove_cpf_formatting(request.POST.get('username'))
@@ -25,7 +26,7 @@ def custom_login(request):
             user = authenticate(request=request, username=username, password = password)
             if user is not None:
                 login( request=request, user=user)
-                return redirect(index)
+                return redirect(next_url)
             else:
                 error = True
                 text_error = "Cpf ou senha inválidos"
@@ -49,9 +50,10 @@ def custom_login(request):
                     perfil.user.save()
                     perfil.save()
                     
+                    authenticate(perfil.user, senha1)
                     login(user=perfil.user, request=request)
                     print(perfil.foto)
-                    return redirect(index)
+                    return redirect(next_url)
                 else:
                     error = True
                     text_error = 'As senhas não conferem'
